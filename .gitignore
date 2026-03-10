@@ -1,0 +1,35 @@
+# Environment variables (contains API keys)
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Generated audio files
+audio/*.mp3
+!audio/.gitkeep
+
+# Logs
+logs/*.log
+!logs/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Project specific
+Andres_Vera_British_Pitch*.mp3

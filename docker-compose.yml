@@ -1,0 +1,100 @@
+# Docker Compose configuration for CVAudioStudio
+# This file defines how to run the application with Docker Compose
+# Use: docker-compose up -d
+
+version: '3.8'
+
+services:
+  # Main Streamlit application service
+  app:
+    # Build configuration
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # Container name for easy reference
+    container_name: cvaudiostudio
+    
+    # Image name
+    image: cvaudiostudio:latest
+    
+    # Restart policy - always restart unless stopped manually
+    restart: unless-stopped
+    
+    # Port mapping: host:container
+    # Access the app at http://localhost:8501
+    ports:
+      - "8501:8501"
+    
+    # Environment variables
+    # You can also use an .env file in the same directory
+    environment:
+      # Python environment
+      - PYTHONUNBUFFERED=1
+      # Streamlit configuration
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_LOGGER_LEVEL=info
+    
+    # Volume mounts - sync host directories with container
+    # Format: host_path:container_path:options
+    volumes:
+      # Mount application code for development (hot reload)
+      - ./:/app
+      
+      # Persist audio files outside container
+      # Generated audio files won't be lost when container is removed
+      - ./audio:/app/audio
+      
+      # Persist logs outside container
+      # Logs survive container restarts
+      - ./logs:/app/logs
+      
+      # Mount environment file if it exists
+      # This keeps sensitive data out of the image
+      - ./.env:/app/.env:ro
+    
+    # Network
+    # Uses default network for communication
+    networks:
+      - cvaudiostudio-network
+    
+    # Resource limits (optional but recommended)
+    # Prevents the container from using all system resources
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'      # Max 1 CPU core
+          memory: 1G      # Max 1GB RAM
+        reservations:
+          cpus: '0.5'     # Reserve 0.5 CPU core
+          memory: 512M    # Reserve 512MB RAM
+    
+    # Health check
+    # Docker Compose will use this to determine service health
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s      # Check every 30 seconds
+      timeout: 10s       # Timeout after 10 seconds
+      retries: 3         # Fail after 3 consecutive failures
+      start_period: 10s  # Give container 10s to start before checking
+    
+    # Container labels
+    # Useful for organizing and managing containers
+    labels:
+      - "com.cvaudiostudio.description=Text-to-Speech Converter"
+      - "com.cvaudiostudio.version=1.0"
+
+# Network configuration
+networks:
+  cvaudiostudio-network:
+    driver: bridge
+    name: cvaudiostudio-network
+
+# Volumes configuration (optional)
+# Named volumes can be used instead of bind mounts
+volumes:
+  audio-data:
+    driver: local
+  log-data:
+    driver: local

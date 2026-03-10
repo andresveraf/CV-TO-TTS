@@ -1,0 +1,12 @@
+ source venv/bin/activate && python script_cv_to_voice.py
+
+
+source venv/bin/activate && python3 script_openai_tts.py      
+
+ https://developers.openai.com/api/docs/guides/text-to-speech
+
+
+
+
+ python3 -m streamlit run streamlit_app.py --server.headless true
+ python3 -m streamlit run streamlit_app.py

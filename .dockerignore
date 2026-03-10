@@ -1,0 +1,96 @@
+# .dockerignore - Files to exclude from Docker image
+# This reduces image size and speeds up builds by excluding unnecessary files
+
+# Version control
+.git/
+.gitignore
+.gitattributes
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project-specific files (keep these on host, not in image)
+audio/*.mp3
+audio/*.wav
+audio/*.opus
+audio/*.aac
+audio/*.flac
+logs/*.log
+
+# Environment files (security - don't copy secrets)
+.env
+.env.local
+.env.*.local
+
+# Documentation (not needed in running container)
+README.md
+QUICKSTART.md
+DEPLOYMENT.md
+DEPLOYMENT_COMPARISON.md
+LICENSE
+NOTICE
+
+# Docker files (don't copy Docker files into Docker image)
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# CI/CD files
+.github/
+.gitlab-ci.yml
+.travis.yml
+
+# Testing and development
+pytest.ini
+.coverage
+.tox/
+.pytest_cache/
+htmlcov/
+
+# Node.js (if any frontend dependencies)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.cache
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Streamlit cache
+.streamlit/cache/
+
+# Sample or test data
+text/samples/
+test_data/
+examples/
