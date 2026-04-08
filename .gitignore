@@ -1,35 +1,217 @@
+# ============================================================
+# ENVIRONMENT & SECURITY
+# ============================================================
 # Environment variables (contains API keys)
 .env
+.env.local
+.env.*.local
 .streamlit/secrets.toml
+secrets/
+.secrets/
+credentials.json
+auth_tokens.json
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
 
-# Python
+# ============================================================
+# PYTHON
+# ============================================================
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.manifest
+*.spec
+
+# Virtual environments
 venv/
 env/
 ENV/
+venv.bak/
+env.bak/
 
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# ============================================================
+# STREAMLIT
+# ============================================================
+# Streamlit specific
+.streamlit/uploads/
+.streamlit/static/
+*.streamlit/
+
+# Session data
+*.session
+
+# ============================================================
+# AUDIO & MEDIA FILES
+# ============================================================
 # Generated audio files
 audio/*.mp3
+audio/*.wav
+audio/*.ogg
+audio/*.flac
+audio/temp/
+audio/raw/
 !audio/.gitkeep
-
-# Logs
-logs/*.log
-!logs/.gitkeep
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
 
 # Project specific
 Andres_Vera_British_Pitch*.mp3
+
+# ============================================================
+# DATABASES & MODELS
+# ============================================================
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+
+# ML Models (if applicable)
+models/
+*.pkl
+*.pickle
+*.h5
+*.pb
+*.onnx
+
+# ============================================================
+# LOGS & TEMPORARY FILES
+# ============================================================
+# Logs
+logs/*.log
+logs/*/
+!logs/.gitkeep
+*.log.*
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+
+# ============================================================
+# DOCKER & DEPLOYMENT
+# ============================================================
+# Docker
+*.pid
+*.seed
+*.pid.lock
+docker-volumes/
+
+# ============================================================
+# IDE & EDITORS
+# ============================================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Spyder
+.spyderproject
+.spyproject
+.ropeproject
+
+# Eclipse
+.project
+.pydevproject
+.settings/
+
+# Other editors
+.history/
+*.sublime-workspace
+
+# ============================================================
+# OPERATING SYSTEM FILES
+# ============================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+.directory
+.Trash-*
+
+# ============================================================
+# CI/CD & BUILD
+# ============================================================
+# CI/CD
+.github/workflows/*.local.yml
+
+# Build artifacts
+*.cache
+.cache/
+
+# ============================================================
+# Others
+# ============================================================
+notes.txt
